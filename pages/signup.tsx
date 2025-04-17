@@ -9,7 +9,7 @@ import { AuthSignUpBody } from '@/types/auth/auth.types';
 const SignUp = () => {
   const router = useRouter();
 
-  const { mutateAsync } = SignUpUser({
+  const { mutateAsync, isPending } = SignUpUser({
     onSuccess: () => {
       toast.success('Success Register, Please Login');
       router.push('/auth');
@@ -62,7 +62,9 @@ const SignUp = () => {
           />
         </div>
 
-        <Button type="submit">Register</Button>
+        <Button type="submit" disabled={isPending} loading={isPending}>
+          Register
+        </Button>
 
         <p className="text-sm text-gray-400 mt-5">
           Have Account?{' '}

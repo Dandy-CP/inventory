@@ -10,7 +10,7 @@ const Auth = () => {
   const router = useRouter();
   const { signIn } = useAuth();
 
-  const { mutateAsync } = SignIn({
+  const { mutateAsync, isPending } = SignIn({
     onSuccess: (data) => {
       signIn(data);
     },
@@ -59,7 +59,9 @@ const Auth = () => {
           />
         </div>
 
-        <Button type="submit">Login</Button>
+        <Button type="submit" disabled={isPending} loading={isPending}>
+          Login
+        </Button>
 
         <p className="text-sm text-gray-400 mt-5">
           Not Have Account?{' '}
